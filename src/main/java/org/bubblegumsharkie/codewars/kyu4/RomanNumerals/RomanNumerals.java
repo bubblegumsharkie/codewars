@@ -1,5 +1,7 @@
 package org.bubblegumsharkie.codewars.kyu4.RomanNumerals;
 
+import java.util.ArrayList;
+
 public class RomanNumerals {
     public static String toRoman(int n) {
         int currentN = n;
@@ -50,6 +52,36 @@ public class RomanNumerals {
     }
 
     public static int fromRoman(String romanNumeral) {
-        return 1;
+        ArrayList<Character> romanNumeralChar = new ArrayList<>();
+        romanNumeralChar.add(' ');
+        for (char c : romanNumeral.toCharArray()
+        ) {
+            romanNumeralChar.add(c);
+        }
+        romanNumeralChar.add(' ');
+        int year = 0;
+        for (int i = 0; i < romanNumeralChar.size(); i++) {
+            if (romanNumeralChar.get(i) == 'M') year += 1000;
+            if (romanNumeralChar.get(i) == 'D') year += 500;
+            if (romanNumeralChar.get(i) == 'C') year += 100;
+            if (romanNumeralChar.get(i) == 'L') year += 50;
+            if (romanNumeralChar.get(i) == 'X') year += 10;
+            if (romanNumeralChar.get(i) == 'V' && romanNumeralChar.get(i - 1) != 'I') year += 5;
+            if (romanNumeralChar.get(i) == 'V' && romanNumeralChar.get(i - 1) == 'I') year += 4;
+            if (romanNumeralChar.get(i) == 'I' && romanNumeralChar.get(i - 1) == 'V' && romanNumeralChar.get(i + 1) != 'V') {
+                year += 1;
+            } else if (romanNumeralChar.get(i) == 'I' && romanNumeralChar.get(i - 1) != 'V') {
+                year += 1;
+            }
+
+//            if (romanNumeralChar.get(i) == 'V' && i + 1 < romanNumeralChar.size() && romanNumeralChar.get(i + 1) != 'I')
+//                year += 5;
+//            if (romanNumeralChar.get(i) == 'V' && i + 1 < romanNumeralChar.size() && romanNumeralChar.get(i + 1) == 'I')
+//                year += 4;
+//            if (romanNumeralChar.get(i) == 'I' && i + 1 < romanNumeralChar.size() && romanNumeralChar.get(i - 1) != 'V')
+//                year += 1;
+        }
+        return year;
     }
+
 }
