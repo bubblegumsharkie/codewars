@@ -10,11 +10,15 @@ public class Main {
         System.out.println(RomanNumerals.toRoman(4008));
         System.out.println(RomanNumerals.toRoman(1));
         System.out.println(RomanNumerals.toRoman(9));
+        System.out.println(RomanNumerals.toRoman(44));
+        System.out.println(RomanNumerals.toRoman(44));
 
-        System.out.println(RomanNumerals.fromRoman("MDCLXVI"));
-        System.out.println(RomanNumerals.fromRoman("MMVIII"));
-        System.out.println(RomanNumerals.fromRoman("MMMMVIII"));
-        System.out.println(RomanNumerals.fromRoman("I"));
-        System.out.println(RomanNumerals.fromRoman("VIV"));
+//        System.out.println(RomanNumerals.fromRoman("MDCLXVI"));
+//        System.out.println(RomanNumerals.fromRoman("MMVIII"));
+//        System.out.println(RomanNumerals.fromRoman("MMMMVIII"));
+//        System.out.println(RomanNumerals.fromRoman("I"));
+//        System.out.println(RomanNumerals.fromRoman("IX"));
+        System.out.println(RomanNumerals.fromRoman("IV"));
+//        System.out.println(RomanNumerals.fromRoman("MDCIX"));
     }
 }

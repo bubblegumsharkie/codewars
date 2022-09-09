@@ -1,54 +1,32 @@
 package org.bubblegumsharkie.codewars.kyu4.RomanNumerals;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class RomanNumerals {
+    private final static TreeMap<Integer, String> map = new TreeMap<Integer, String>();
+
+    static {
+        map.put(1000, "M");
+        map.put(900, "CM");
+        map.put(500, "D");
+        map.put(400, "CD");
+        map.put(100, "C");
+        map.put(90, "XC");
+        map.put(50, "L");
+        map.put(40, "XL");
+        map.put(10, "X");
+        map.put(9, "IX");
+        map.put(5, "V");
+        map.put(4, "IV");
+        map.put(1, "I");
+    }
     public static String toRoman(int n) {
-        int currentN = n;
-        StringBuilder stringBuilder = new StringBuilder();
-
-        while (currentN >= 1000) {
-            stringBuilder.append("M");
-            currentN -= 1000;
+        int l =  map.floorKey(n);
+        if ( n == l ) {
+            return map.get(n);
         }
-        while (currentN >= 500) {
-            stringBuilder.append("D");
-            currentN -= 500;
-        }
-
-        while (currentN >= 100) {
-            stringBuilder.append("C");
-            currentN -= 100;
-        }
-
-        while (currentN >= 50) {
-            stringBuilder.append("L");
-            currentN -= 50;
-        }
-
-        while (currentN >= 10) {
-            stringBuilder.append("X");
-            currentN -= 10;
-        }
-
-        while (currentN >= 5) {
-            stringBuilder.append("V");
-            currentN -= 5;
-        }
-
-        while (currentN == 4) {
-            stringBuilder.append("IV");
-            currentN -= 4;
-        }
-
-        while (currentN >= 1) {
-            stringBuilder.append("I");
-            currentN -= 1;
-        }
-
-        System.out.println("Current N = " + currentN);
-
-        return stringBuilder.toString();
+        return map.get(l) + toRoman(n-l);
     }
 
     public static int fromRoman(String romanNumeral) {
@@ -65,23 +43,21 @@ public class RomanNumerals {
             if (romanNumeralChar.get(i) == 'D') year += 500;
             if (romanNumeralChar.get(i) == 'C') year += 100;
             if (romanNumeralChar.get(i) == 'L') year += 50;
-            if (romanNumeralChar.get(i) == 'X') year += 10;
+            if (romanNumeralChar.get(i) == 'X' && romanNumeralChar.get(i - 1) != 'I') {
+                year += 10;
+            } else if (romanNumeralChar.get(i) == 'X' && romanNumeralChar.get(i - 1) == 'I') {
+                year += 9;
+            }
             if (romanNumeralChar.get(i) == 'V' && romanNumeralChar.get(i - 1) != 'I') year += 5;
             if (romanNumeralChar.get(i) == 'V' && romanNumeralChar.get(i - 1) == 'I') year += 4;
             if (romanNumeralChar.get(i) == 'I' && romanNumeralChar.get(i - 1) == 'V' && romanNumeralChar.get(i + 1) != 'V') {
                 year += 1;
-            } else if (romanNumeralChar.get(i) == 'I' && romanNumeralChar.get(i - 1) != 'V') {
+            } else if (romanNumeralChar.get(i) == 'I' && romanNumeralChar.get(i - 1) != 'V'&& romanNumeralChar.get(i + 1) != 'X') {
                 year += 1;
             }
-
-//            if (romanNumeralChar.get(i) == 'V' && i + 1 < romanNumeralChar.size() && romanNumeralChar.get(i + 1) != 'I')
-//                year += 5;
-//            if (romanNumeralChar.get(i) == 'V' && i + 1 < romanNumeralChar.size() && romanNumeralChar.get(i + 1) == 'I')
-//                year += 4;
-//            if (romanNumeralChar.get(i) == 'I' && i + 1 < romanNumeralChar.size() && romanNumeralChar.get(i - 1) != 'V')
-//                year += 1;
         }
         return year;
     }
+
 
 }
