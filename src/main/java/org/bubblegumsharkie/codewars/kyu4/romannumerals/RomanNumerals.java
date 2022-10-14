@@ -1,4 +1,4 @@
-package org.bubblegumsharkie.codewars.kyu4.RomanNumerals;
+package org.bubblegumsharkie.codewars.kyu4.romannumerals;
 
 import java.util.TreeMap;
 

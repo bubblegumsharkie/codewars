@@ -1,6 +1,6 @@
 package org.bubblegumsharkie.codewars;
 
-import org.bubblegumsharkie.codewars.kyu4.RomanNumerals.RomanNumerals;
+import org.bubblegumsharkie.codewars.kyu4.romannumerals.RomanNumerals;
 
 public class Main {
 
